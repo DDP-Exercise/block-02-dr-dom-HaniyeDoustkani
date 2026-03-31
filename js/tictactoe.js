@@ -68,3 +68,111 @@ const BATTLEFIELD =
 // Check Vertical
 // Check Main Diagonal
 // Check Anti Diagonal
+
+
+
+const SIZE = BATTLEFIELD.length;
+let winner = null;
+let winType = "";
+
+
+// 1) Check Horizontal
+
+for (let row = 0; row < SIZE; row++) {
+    let firstCell = BATTLEFIELD[row][0];
+    let rowIsWinner = true;
+
+    if (firstCell === null) {
+        rowIsWinner = false;
+    } else {
+        for (let col = 1; col < SIZE; col++) {
+            if (BATTLEFIELD[row][col] !== firstCell) {
+                rowIsWinner = false;
+            }
+        }
+    }
+
+    if (rowIsWinner) {
+        winner = firstCell;
+        winType = "horizontal";
+    }
+}
+
+
+// 2) Check Vertical
+
+if (winner === null) {
+    for (let col = 0; col < SIZE; col++) {
+        let firstCell = BATTLEFIELD[0][col];
+        let colIsWinner = true;
+
+        if (firstCell === null) {
+            colIsWinner = false;
+        } else {
+            for (let row = 1; row < SIZE; row++) {
+                if (BATTLEFIELD[row][col] !== firstCell) {
+                    colIsWinner = false;
+                }
+            }
+        }
+
+        if (colIsWinner) {
+            winner = firstCell;
+            winType = "vertical";
+        }
+    }
+}
+
+
+// 3) Check Main Diagonal
+
+if (winner === null) {
+    let firstCell = BATTLEFIELD[0][0];
+    let diagonalIsWinner = true;
+
+    if (firstCell === null) {
+        diagonalIsWinner = false;
+    } else {
+        for (let i = 1; i < SIZE; i++) {
+            if (BATTLEFIELD[i][i] !== firstCell) {
+                diagonalIsWinner = false;
+            }
+        }
+    }
+
+    if (diagonalIsWinner) {
+        winner = firstCell;
+        winType = "main-diagonal";
+    }
+}
+
+
+// 4) Check Anti Diagonal
+
+if (winner === null) {
+    let firstCell = BATTLEFIELD[0][SIZE - 1];
+    let diagonalIsWinner = true;
+
+    if (firstCell === null) {
+        diagonalIsWinner = false;
+    } else {
+        for (let i = 1; i < SIZE; i++) {
+            if (BATTLEFIELD[i][SIZE - 1 - i] !== firstCell) {
+                diagonalIsWinner = false;
+            }
+        }
+    }
+
+    if (diagonalIsWinner) {
+        winner = firstCell;
+        winType = "anti-diagonal";
+    }
+}
+
+// 5) Print Result
+if (winner !== null) {
+    console.log("Winner: " + winner);
+    console.log("Win type: " + winType);
+} else {
+    console.log("No winner yet.");
+}
