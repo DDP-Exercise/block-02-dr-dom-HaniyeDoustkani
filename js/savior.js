@@ -27,6 +27,10 @@
  * without the risk of catching an eye infection!
  */
 
+document.body.style.color = "black";
+document.body.style.backgroundColor = "white";
+document.body.style.fontSize = "16px";
+
 
 
 
@@ -36,7 +40,11 @@
  * Can't we just remove them all together?
  */
 
+const minions = document.querySelectorAll(".minion");
+for (const minion of minions){
+    minion.remove();
 
+}
 
 
 /**
@@ -47,12 +55,38 @@
 
 
 
+ const message = document.getElementById("message");
+ message.textContent = "The heroes are back in town!";
+
+const heroesList = document.getElementById("heroes_of_the_web");
+heroesList.innerHTML = "";
+
+const heroes = [
+    "Devs Tool",
+    "Edvin Con Sole",
+    "Kyle De'Bugger",
+    "Storm. Web Storm.",
+    "Brad Git",
+    "El Torvalds",
+    "__proto__"
+];
+
+for (const hero of heroes) {
+    const li = document.createElement("li");
+    li.textContent = hero;
+    heroesList.append(li);
+}
+
+
+
 /**
  * TODO 4:
  * Our Webpage is safe again! But Dr. Dom is still holding our Headline as a hostage!
  * Do your thing, savior!
  */
 
+const title = document.getElementById("title");
+title.textContent = "We, the mighty Heroes of the web, will protect you!";
 
 
 /**
@@ -63,3 +97,12 @@
  * It might sound paranoid. But I can't get rid of the feeling, that he is still here,
  * somewhere in the DOM. I can still feel his Code. Can you identify the source and remove it?
  */
+
+
+const scripts = document.querySelectorAll("script");
+
+for (const script of scripts) {
+    if (script.src.includes("dr.dom.js")) {
+        script.remove();
+    }
+}
